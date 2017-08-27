@@ -1,80 +1,617 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
 
-# poi-utrecht
+# POI manager
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+## POI Containers [/api.php/containers]
+### List all POI Containers [GET]
++ Response 200 (application/json)
+        
+        {
+            "msg": "success",
+            "data": [
+            {
+              "id": 1,
+              "type": "document",
+              "contentType": "text\/html",
+              "pagetitle": "First container",
+              "longtitle": "",
+              "description": "",
+              "alias": "",
+              "link_attributes": "",
+              "published": false,
+              "pub_date": 0,
+              "unpub_date": 0,
+              "parent": 0,
+              "isfolder": false,
+              "introtext": "",
+              "content": "",
+              "richtext": true,
+              "template": 1,
+              "menuindex": 3,
+              "searchable": true,
+              "cacheable": true,
+              "createdby": 1,
+              "createdon": "2013-11-07 20:03:07",
+              "editedby": 0,
+              "editedon": 0,
+              "deleted": false,
+              "deletedon": 0,
+              "deletedby": 0,
+              "publishedon": 0,
+              "publishedby": 0,
+              "menutitle": "",
+              "donthit": false,
+              "privateweb": false,
+              "privatemgr": false,
+              "content_dispo": 0,
+              "hidemenu": false,
+              "class_key": "MarvinCategory",
+              "context_key": "web",
+              "content_type": 1,
+              "uri": "",
+              "uri_override": 0,
+              "hide_children_in_tree": 0,
+              "show_in_tree": 1,
+              "properties": null,
+              "icon": "",
+              "color": "#0000FF",
+              "category": "14"
+            },
+            {
+              "id": 2,
+              "type": "document",
+              "contentType": "text\/html",
+              "pagetitle": "Second container",
+              "longtitle": "",
+              "description": "",
+              "alias": "",
+              "link_attributes": "",
+              "published": false,
+              "pub_date": 0,
+              "unpub_date": 0,
+              "parent": 0,
+              "isfolder": false,
+              "introtext": "",
+              "content": "",
+              "richtext": true,
+              "template": 1,
+              "menuindex": 1,
+              "searchable": true,
+              "cacheable": true,
+              "createdby": 1,
+              "createdon": "2013-11-12 13:29:08",
+              "editedby": 0,
+              "editedon": 0,
+              "deleted": false,
+              "deletedon": 0,
+              "deletedby": 0,
+              "publishedon": 0,
+              "publishedby": 0,
+              "menutitle": "",
+              "donthit": false,
+              "privateweb": false,
+              "privatemgr": false,
+              "content_dispo": 0,
+              "hidemenu": false,
+              "class_key": "MarvinCategory",
+              "context_key": "web",
+              "content_type": 1,
+              "uri": "",
+              "uri_override": 0,
+              "hide_children_in_tree": 0,
+              "show_in_tree": 1,
+              "properties": null,
+              "icon": "",
+              "color": "",
+              "category": "15"
+            }
+          ]
+        }
 
-## Questions Collection [/questions]
+## POI Container [/api.php/containers/{id}]
+A single POI Container object
 
-### List All Questions [GET]
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Container to perform action with. Has example value.
 
+### Retrieve a Container [GET]
 + Response 200 (application/json)
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
+        {
+            "msg": "success",
+            "data": {
+                "id": 1,
+                "icon": "",
+                "color": "#0000FF",
+                "category": 1,
+                "type": "document",
+                "contentType": "text/html",
+                "pagetitle": "test category",
+                "longtitle": "",
+                "description": "",
+                "alias": "",
+                "link_attributes": "",
+                "published": false,
+                "pub_date": 0,
+                "unpub_date": 0,
+                "parent": 0,
+                "isfolder": false,
+                "introtext": "",
+                "content": "",
+                "richtext": true,
+                "template": 1,
+                "menuindex": 3,
+                "searchable": true,
+                "cacheable": true,
+                "createdby": 1,
+                "createdon": "2013-11-07 20:03:07",
+                "editedby": 0,
+                "editedon": 0,
+                "deleted": false,
+                "deletedon": 0,
+                "deletedby": 0,
+                "publishedon": 0,
+                "publishedby": 0,
+                "menutitle": "",
+                "donthit": false,
+                "privateweb": false,
+                "privatemgr": false,
+                "content_dispo": 0,
+                "hidemenu": false,
+                "class_key": "MarvinCategory",
+                "context_key": "web",
+                "content_type": 1,
+                "uri": "",
+                "uri_override": 0,
+                "hide_children_in_tree": 0,
+                "show_in_tree": 1,
+                "properties": null
             }
-        ]
+        }
 
-### Create a New Question [POST]
+## POIs [/api.php/pois]
+### List all POIs [GET]
++ Response 200 (application/json)
+        
+        {
+            "msg": "success",
+            "data": [
+                {
+                    "id": 1,
+                    "created": "2013-11-14 19:44:16",
+                    "updated": "2014-01-14 15:35:15",
+                    "updated_by": 1,
+                    "deleted": 0,
+                    "name": "First location",
+                    "alias": "first-location",
+                    "lat": 50.082759857178,
+                    "lng": 14.465103149414,
+                    "zoom": 12,
+                    "state": "new",
+                    "type": 1,
+                    "typeFields": {
+                        "4": {
+                            "name": "Author's name",
+                            "value": "John Smith"
+                        },
+                        "3": {
+                            "name": "Description",
+                            "value": "this is a description"
+                        },
+                        "5": {
+                            "name": "Author's email",
+                            "value": "example@example.com"
+                        }
+                    }
+                },
+                {
+                    "id": 3,
+                    "created": "2013-11-28 13:42:57",
+                    "updated": "2014-01-14 15:35:35",
+                    "updated_by": 1,
+                    "deleted": 0,
+                    "name": "Second location",
+                    "alias": "second-location",
+                    "lat": 50.757308959961,
+                    "lng": 15.062255859375,
+                    "zoom": 7,
+                    "state": "new",
+                    "type": 6,
+                    "typeFields": {
+                        "6": {
+                            "name": "content",
+                            "value": "this is a content"
+                        }
+                    }
+                }
+            ]
+        }            
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+## POIs [/api.php/containers/{id}/pois]
 
-+ Request (application/json)
++ Parameters
+    + id (required, number, `15`) ... Numeric `id` of the Container to perform action with. Has example value.
+    
+### List all POIs under specific container [GET]
++ Response 200 (application/json)
+        
+        {
+            "msg": "success",
+            "data": [
+                {
+                    "id": 3,
+                    "created": "2013-11-28 13:42:57",
+                    "updated": "2014-01-14 15:35:35",
+                    "updated_by": 1,
+                    "deleted": 0,
+                    "name": "Second location",
+                    "alias": "second-location",
+                    "lat": 50.757308959961,
+                    "lng": 15.062255859375,
+                    "zoom": 7,
+                    "state": "new",
+                    "type": 6,
+                    "typeFields": {
+                        "6": {
+                            "name": "content",
+                            "value": "this is a content"
+                        }
+                    }
+                }
+            ]
+        }          
+
+## POI [/api.php/pois/{id}]
+A single POI object
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the POI to perform action with. Has example value.
+
+### Retrieve the POI [GET]
++ Response 200 (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
+            "msg": "success",
+            "data": {
+                "id": 1,
+                "created": "2013-11-14 19:44:16",
+                "updated": "2014-01-14 15:35:15",
+                "updated_by": 1,
+                "deleted": 0,
+                "name": "First location",
+                "alias": "first-location",
+                "lat": 50.082759857178,
+                "lng": 14.465103149414,
+                "zoom": 12,
+                "state": "new",
+                "type": 1,
+                "typeFields": {
+                    "4": {
+                        "name": "Author's name",
+                        "value": "John Smith"
+                    },
+                    "3": {
+                        "name": "Description",
+                        "value": "this is a description"
+                    },
+                    "5": {
+                        "name": "Author's email",
+                        "value": "example@example.com"
+                    }
+                }
+            }
+        }
+
+## POI Photos [/api.php/pois/{id}/photos]
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the POI to perform action with. Has example value.
+
+### List all Photos attached to specific POI [GET]
++ Response 200 (application/json)
+        
+        {
+            "msg": "success",
+            "data": [
+                {
+                    "id": 1,
+                    "created": "2014-01-07 15:29:48",
+                    "updated": 0,
+                    "updated_by": 0,
+                    "deleted": 0,
+                    "name": "smith",
+                    "description": "avatar picture",
+                    "file": "smith.png",
+                    "authors_name": "John Smith",
+                    "authors_email": "example@example.com",
+                    "location": 1
+                }
             ]
         }
 
-+ Response 201 (application/json)
+## POI Photo [/api.php/photos/{id}]
 
-    + Headers
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Photo to perform action with. Has example value.
 
-            Location: /questions/2
+### Retrieve specific Photo [GET]
++ Response 200 (application/json)
+        
+        {
+            "msg": "success",
+            "data": [
+                {
+                    "id": 1,
+                    "created": "2014-01-07 15:29:48",
+                    "updated": 0,
+                    "updated_by": 0,
+                    "deleted": 0,
+                    "name": "smith",
+                    "description": "avatar picture",
+                    "file": "smith.png",
+                    "authors_name": "John Smith",
+                    "authors_email": "example@example.com",
+                    "location": 1
+                }
+            ]
+        }
 
-    + Body
+## POI Comments [/api.php/pois/{id}/comments]
 
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the POI to perform action with. Has example value.
+
+### List all Comments attached to specific POI [GET]
++ Response 200 (application/json)
+        
+        {
+            "msg": "success",
+            "data": [
+                {
+                    "id": 1,
+                    "created": "2013-11-20 15:07:41",
+                    "updated": "2014-01-22 13:21:55",
+                    "updated_by": 1,
+                    "deleted": 0,
+                    "text": "this is a first comment",
+                    "authors_name": "John Smith",
+                    "authors_email": "example@example.com",
+                    "state": "approved",
+                    "location": 1
+                }
+            ]
+        }
+
+## POI Comment [/api.php/comments/{id}]
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Comment to perform action with. Has example value.
+
+### Retrieve specific Comment [GET]
++ Response 200 (application/json)
+        
+        {
+            "msg": "success",
+            "data": [
+                {
+                    "id": 1,
+                    "created": "2013-11-20 15:07:41",
+                    "updated": "2014-01-22 13:21:55",
+                    "updated_by": 1,
+                    "deleted": 0,
+                    "text": "this is a first comment",
+                    "authors_name": "John Smith",
+                    "authors_email": "example@example.com",
+                    "state": "approved",
+                    "location": 1
+                }
+            ]
+        }
+
+## POI Feedbacks [/api.php/pois/{id}/feedbacks]
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the POI to perform action with. Has example value.
+
+### List all Feedbacks attached to specific POI [GET]
++ Response 200 (application/json)
+        
+        {
+            "msg": "success",
+            "data": [
+                {
+                    "id": 1,
+                    "created": "2013-11-16 14:06:43",
+                    "updated": "2014-01-22 13:23:37",
+                    "updated_by": 1,
+                    "deleted": 0,
+                    "text": "this is a first feedback",
+                    "authors_name": "John Smith",
+                    "authors_email": "example@example.com",
+                    "state": "solved",
+                    "location": 1
+                },
+                {
+                    "id": 2,
+                    "created": "2013-11-16 14:06:45",
+                    "updated": "2013-11-20 15:07:41",
+                    "updated_by": 1,
+                    "deleted": 0,
+                    "text": "This is a second feedback",
+                    "authors_name": "John Smith",
+                    "authors_email": "example@example.com",
+                    "state": "in_progress",
+                    "location": 1
+                }
+            ]
+        }
+
+## POI Feedback [/api.php/feedbacks/{id}]
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Feedback to perform action with. Has example value.
+
+### Retrieve specific Feedback [GET]
++ Response 200 (application/json)
+        
+        {
+            "msg": "success",
+            "data": [
+                {
+                    "id": 1,
+                    "created": "2013-11-16 14:06:43",
+                    "updated": "2014-01-22 13:23:37",
+                    "updated_by": 1,
+                    "deleted": 0,
+                    "text": "this is a first feedback",
+                    "authors_name": "John Smith",
+                    "authors_email": "example@example.com",
+                    "state": "solved",
+                    "location": 1
+                }
+            ]
+        }
+
+## POI Types [/api.php/poitypes]
+### List all POI Types [GET]
++ Response 200 (application/json)
+        
+        {
+          "msg": "success",
+          "data": [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
+              "id": 1,
+              "created": "2013-11-27 14:40:21",
+              "updated": "2014-01-20 01:26:13",
+              "updated_by": 1,
+              "deleted": 0,
+              "name": "Default",
+              "description": "Default type",
+              "default": 1
+            },
+            {
+              "id": 2,
+              "created": "2013-11-27 14:40:53",
+              "updated": 0,
+              "updated_by": 0,
+              "deleted": "2013-11-27 14:45:46",
+              "name": "Another type",
+              "description": "This is just another type",
+              "default": 0
             }
+          ]
+        }
+
+## Fields for specific POI Type [/api.php/poitypes/{type}/fields]
+
++ Parameters
+    + type (required, number, `1`) ... Numeric `id` of the POI Type to perform action with. Has example value.
+    
+### List all fields for specific POI Type [GET]
++ Response 200 (application/json)
+        
+        {
+            "msg": "success",
+            "data": [
+                {
+                    "id": 4,
+                    "created": "2013-11-23 17:40:58",
+                    "updated": "2013-11-23 18:14:37",
+                    "updated_by": 1,
+                    "deleted": 0,
+                    "name": "Author's name",
+                    "type": "textfield",
+                    "default": "",
+                    "required": 1,
+                    "read_only": 0,
+                    "position": 1,
+                    "location_type": 1
+                },
+                {
+                    "id": 3,
+                    "created": "2013-11-23 17:40:48",
+                    "updated": "2013-11-23 18:14:29",
+                    "updated_by": 1,
+                    "deleted": 0,
+                    "name": "Description",
+                    "type": "textarea",
+                    "default": "",
+                    "required": 0,
+                    "read_only": 1,
+                    "position": 3,
+                    "location_type": 1
+                },
+                {
+                    "id": 5,
+                    "created": "2013-11-23 17:52:10",
+                    "updated": "2013-11-23 18:05:26",
+                    "updated_by": 1,
+                    "deleted": 0,
+                    "name": "Author's email",
+                    "type": "textfield",
+                    "default": "",
+                    "required": 1,
+                    "read_only": 0,
+                    "position": 2,
+                    "location_type": 1
+                }
+            ]
+        }
+
+## Field [/api.php/poitypes/{type}/fields/{id}]
+
++ Parameters
+    + type (required, number, `1`) ... Numeric `id` of the POI Type to perform action with. Has example value.
+    + id (required, number, `4`) ... Numeric `id` of the Field to perform action with. Has example value.
+    
+### List all fields for specific POI Type [GET]
++ Response 200 (application/json)
+        
+        {
+            "msg": "success",
+            "data": [
+                {
+                    "id": 4,
+                    "created": "2013-11-23 17:40:58",
+                    "updated": "2013-11-23 18:14:37",
+                    "updated_by": 1,
+                    "deleted": 0,
+                    "name": "Author's name",
+                    "type": "textfield",
+                    "default": "",
+                    "required": 1,
+                    "read_only": 0,
+                    "position": 1,
+                    "location_type": 1
+                }
+            ]
+        }
+
+## Field [/api.php/fields/{id}]
+
++ Parameters
+    + id (required, number, `4`) ... Numeric `id` of the Field to perform action with. Has example value.
+    
+### List all fields for specific POI Type [GET]
++ Response 200 (application/json)
+        
+        {
+            "msg": "success",
+            "data": [
+                {
+                    "id": 4,
+                    "created": "2013-11-23 17:40:58",
+                    "updated": "2013-11-23 18:14:37",
+                    "updated_by": 1,
+                    "deleted": 0,
+                    "name": "Author's name",
+                    "type": "textfield",
+                    "default": "",
+                    "required": 1,
+                    "read_only": 0,
+                    "position": 1,
+                    "location_type": 1
+                }
+            ]
+        }
+
